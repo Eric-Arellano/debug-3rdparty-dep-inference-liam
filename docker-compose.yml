@@ -1,0 +1,25 @@
+version: '3'
+services:
+  qa:
+    build: 
+      context: src/
+      dockerfile: processors/qa/Dockerfile
+    container_name: qa
+    image: qa:latest
+    ports:
+      - "40003:40003"
+    networks:
+      - intranet
+  api:
+        build: 
+          context: src/
+          dockerfile: api/Dockerfile
+        container_name: api
+        image: api:latest
+        ports:
+            - "40001:40001"
+        networks:
+            - intranet
+networks:
+  intranet:
+    driver: bridge
